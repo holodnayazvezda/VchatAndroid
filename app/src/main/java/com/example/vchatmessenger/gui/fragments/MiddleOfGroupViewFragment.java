@@ -63,7 +63,11 @@ public class MiddleOfGroupViewFragment extends Fragment {
                             ArrayList<String> authData = getAuthData(requireActivity().getApplicationContext());
                             List<Message> messages = getMessagesWithOffset(authData.get(0), authData.get(1), chatId, limit, offset);
                             if (messages != null) {
-                                messagesList.addAll(messages);
+                                if (messages.size() == 1 && !messagesList.contains(messages.get(0))) {
+                                    messagesList.addAll(messages);
+                                } else if (messages.size() > 1) {
+                                    messagesList.addAll(messages);
+                                }
                                 list_of_messages.post(() -> {
                                     if (list_of_messages.getAdapter() != null) {
                                         list_of_messages.getAdapter().notifyItemRangeChanged(messagesList.size() - messages.size(), messages.size());

@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 
 public class Constants {
-    public static String serverUrl = "https://d4f5-188-162-64-81.ngrok-free.app/";
+    public static String serverUrl = "http://80.90.191.25:3000/";
     public static int ok = 200;
     public static int lengthError = 333;
     public static int noNumberError = 401;

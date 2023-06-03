@@ -64,7 +64,7 @@ public class SocketService extends Service {
 
             ArrayList<String> authData = getAuthData(getApplicationContext());
             options.query = Credentials.basic(authData.get(0), authData.get(1));
-            socket = IO.socket("https://35b3-188-162-64-81.ngrok-free.app/", options);
+            socket = IO.socket("http://80.90.191.25:4000/", options);
             socket.on(Socket.EVENT_CONNECT, args -> {
                 isConnected = true;
             });
