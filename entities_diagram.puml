@@ -1,0 +1,333 @@
+@startuml
+class com.example.vchatmessenger.core.dto.CreateChannelDto {
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_UNREAD_MSG_COUNT
+- Long unreadMsgCount
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ {static} String SERIALIZED_NAME_MESSAGES_IDS
+- List<Long> messagesIds
++ {static} String SERIALIZED_NAME_MEMBERS_NICKNAMES
+- List<String> membersNicknames
++ {static} String SERIALIZED_NAME_NICKNAME
+- String nickname
++ CreateChannelDto name(String)
++ String getName()
++ void setName(String)
++ CreateChannelDto unreadMsgCount(Long)
++ Long getUnreadMsgCount()
++ void setUnreadMsgCount(Long)
++ CreateChannelDto typeOfImage(Integer)
++ Integer getTypeOfImage()
++ void setTypeOfImage(Integer)
++ CreateChannelDto messagesIds(List<Long>)
++ CreateChannelDto addMessagesIdsItem(Long)
++ List<Long> getMessagesIds()
++ void setMessagesIds(List<Long>)
++ CreateChannelDto membersNicknames(List<String>)
++ CreateChannelDto addMembersNicknamesItem(String)
++ List<String> getMembersNicknames()
++ void setMembersNicknames(List<String>)
++ CreateChannelDto nickname(String)
++ String getNickname()
++ void setNickname(String)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.core.dto.CreateUserDto {
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_NICKNAME
+- String nickname
++ {static} String SERIALIZED_NAME_PASSWORD
+- String password
++ {static} String SERIALIZED_NAME_SECRET_WORDS
+- List<String> secretWords
++ CreateUserDto name(String)
++ String getName()
++ void setName(String)
++ CreateUserDto nickname(String)
++ String getNickname()
++ void setNickname(String)
++ CreateUserDto password(String)
++ String getPassword()
++ void setPassword(String)
++ CreateUserDto secretWords(List<String>)
++ CreateUserDto addSecretWordsItem(String)
++ List<String> getSecretWords()
++ void setSecretWords(List<String>)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.core.dto.Message {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_CONTENT
+- String content
++ {static} String SERIALIZED_NAME_MESSAGE_CHAT_ID
+- Long messageChatId
++ {static} String SERIALIZED_NAME_OWNER_NICKNAME
+- String ownerNickname
++ {static} String SERIALIZED_NAME_READERS_NICKNAMES
+- List<String> readersNicknames
++ Message id(Long)
++ Long getId()
++ void setId(Long)
++ Message content(String)
++ String getContent()
++ void setContent(String)
++ Message messageChatId(Long)
++ Long getMessageChatId()
++ void setMessageChatId(Long)
++ Message ownerNickname(String)
++ String getOwnerNickname()
++ void setOwnerNickname(String)
++ Message readersNicknames(List<String>)
++ Message addReadersNicknamesItem(String)
++ List<String> getReadersNicknames()
++ void setReadersNicknames(List<String>)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.core.dto.Channel {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_UNREAD_MSG_COUNT
+- Long unreadMsgCount
++ {static} String SERIALIZED_NAME_TYPE
+- Integer type
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ {static} String SERIALIZED_NAME_OWNER_NICKNAME
+- String ownerNickname
++ {static} String SERIALIZED_NAME_MESSAGES_IDS
+- List<Long> messagesIds
++ {static} String SERIALIZED_NAME_MEMBERS_NICKNAMES
+- List<String> membersNicknames
++ {static} String SERIALIZED_NAME_NICKNAME
+- String nickname
++ Channel id(Long)
++ Long getId()
++ void setId(Long)
++ Channel name(String)
++ String getName()
++ void setName(String)
++ Channel unreadMsgCount(Long)
++ Long getUnreadMsgCount()
++ void setUnreadMsgCount(Long)
++ Channel type(Integer)
++ Integer getType()
++ void setType(Integer)
++ Channel typeOfImage(Integer)
++ Integer getTypeOfImage()
++ void setTypeOfImage(Integer)
++ Channel ownerNickname(String)
++ String getOwnerNickname()
++ void setOwnerNickname(String)
++ Channel messagesIds(List<Long>)
++ Channel addMessagesIdsItem(Long)
++ List<Long> getMessagesIds()
++ void setMessagesIds(List<Long>)
++ Channel membersNicknames(List<String>)
++ Channel addMembersNicknamesItem(String)
++ List<String> getMembersNicknames()
++ void setMembersNicknames(List<String>)
++ Channel nickname(String)
++ String getNickname()
++ void setNickname(String)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.core.dto.ChangeImageNewImageDataParameter {
++ {static} String SERIALIZED_NAME_SHORT
+- Integer _short
++ {static} String SERIALIZED_NAME_CHAR
+- String _char
++ {static} String SERIALIZED_NAME_INT
+- Integer _int
++ {static} String SERIALIZED_NAME_LONG
+- Long _long
++ {static} String SERIALIZED_NAME_FLOAT
+- Float _float
++ {static} String SERIALIZED_NAME_DOUBLE
+- Double _double
++ {static} String SERIALIZED_NAME_DIRECT
+- Boolean direct
++ {static} String SERIALIZED_NAME_READ_ONLY
+- Boolean readOnly
++ ChangeImageNewImageDataParameter _short(Integer)
++ Integer getShort()
++ void setShort(Integer)
++ ChangeImageNewImageDataParameter _char(String)
++ String getChar()
++ void setChar(String)
++ ChangeImageNewImageDataParameter _int(Integer)
++ Integer getInt()
++ void setInt(Integer)
++ ChangeImageNewImageDataParameter _long(Long)
++ Long getLong()
++ void setLong(Long)
++ ChangeImageNewImageDataParameter _float(Float)
++ Float getFloat()
++ void setFloat(Float)
++ ChangeImageNewImageDataParameter _double(Double)
++ Double getDouble()
++ void setDouble(Double)
++ ChangeImageNewImageDataParameter direct(Boolean)
++ Boolean getDirect()
++ void setDirect(Boolean)
++ ChangeImageNewImageDataParameter readOnly(Boolean)
++ Boolean getReadOnly()
++ void setReadOnly(Boolean)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.core.dto.CreateMessageDto {
++ {static} String SERIALIZED_NAME_CONTENT
+- String content
++ {static} String SERIALIZED_NAME_MESSAGE_CHAT_ID
+- Long messageChatId
++ CreateMessageDto content(String)
++ String getContent()
++ void setContent(String)
++ CreateMessageDto messageChatId(Long)
++ Long getMessageChatId()
++ void setMessageChatId(Long)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.core.dto.CreateGroupDto {
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_UNREAD_MSG_COUNT
+- Long unreadMsgCount
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ {static} String SERIALIZED_NAME_MESSAGES_IDS
+- List<Long> messagesIds
++ {static} String SERIALIZED_NAME_MEMBERS_NICKNAMES
+- List<String> membersNicknames
++ CreateGroupDto name(String)
++ String getName()
++ void setName(String)
++ CreateGroupDto unreadMsgCount(Long)
++ Long getUnreadMsgCount()
++ void setUnreadMsgCount(Long)
++ CreateGroupDto typeOfImage(Integer)
++ Integer getTypeOfImage()
++ void setTypeOfImage(Integer)
++ CreateGroupDto messagesIds(List<Long>)
++ CreateGroupDto addMessagesIdsItem(Long)
++ List<Long> getMessagesIds()
++ void setMessagesIds(List<Long>)
++ CreateGroupDto membersNicknames(List<String>)
++ CreateGroupDto addMembersNicknamesItem(String)
++ List<String> getMembersNicknames()
++ void setMembersNicknames(List<String>)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.core.dto.User {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_NICKNAME
+- String nickname
++ {static} String SERIALIZED_NAME_PASSWORD
+- String password
++ {static} String SERIALIZED_NAME_CHATS_IDS
+- List<Long> chatsIds
++ {static} String SERIALIZED_NAME_SECRET_KEYS
+- List<String> secretKeys
++ User id(Long)
++ Long getId()
++ void setId(Long)
++ User name(String)
++ String getName()
++ void setName(String)
++ User nickname(String)
++ String getNickname()
++ void setNickname(String)
++ User password(String)
++ String getPassword()
++ void setPassword(String)
++ User chatsIds(List<Long>)
++ User addChatsIdsItem(Long)
++ List<Long> getChatsIds()
++ void setChatsIds(List<Long>)
++ User secretKeys(List<String>)
++ User addSecretKeysItem(String)
++ List<String> getSecretKeys()
++ void setSecretKeys(List<String>)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.core.dto.Group {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_UNREAD_MSG_COUNT
+- Long unreadMsgCount
++ {static} String SERIALIZED_NAME_TYPE
+- Integer type
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ {static} String SERIALIZED_NAME_OWNER_NICKNAME
+- String ownerNickname
++ {static} String SERIALIZED_NAME_MESSAGES_IDS
+- List<Long> messagesIds
++ {static} String SERIALIZED_NAME_MEMBERS_NICKNAMES
+- List<String> membersNicknames
++ Group id(Long)
++ Long getId()
++ void setId(Long)
++ Group name(String)
++ String getName()
++ void setName(String)
++ Group unreadMsgCount(Long)
++ Long getUnreadMsgCount()
++ void setUnreadMsgCount(Long)
++ Group type(Integer)
++ Integer getType()
++ void setType(Integer)
++ Group typeOfImage(Integer)
++ Integer getTypeOfImage()
++ void setTypeOfImage(Integer)
++ Group ownerNickname(String)
++ String getOwnerNickname()
++ void setOwnerNickname(String)
++ Group messagesIds(List<Long>)
++ Group addMessagesIdsItem(Long)
++ List<Long> getMessagesIds()
++ void setMessagesIds(List<Long>)
++ Group membersNicknames(List<String>)
++ Group addMembersNicknamesItem(String)
++ List<String> getMembersNicknames()
++ void setMembersNicknames(List<String>)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+@enduml

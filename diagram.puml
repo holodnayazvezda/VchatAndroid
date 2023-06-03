@@ -1,0 +1,1202 @@
+@startuml
+interface com.example.vchatmessenger.core.api.PasswordControllerApi {
+~ Call<Integer> checkPasswordAllConditions(String,String)
+~ Call<Integer> checkPasswordConditions(String)
+~ Call<Integer> checkPasswordConfirmation(String,String)
+}
+class com.example.vchatmessenger.core.auth.OAuthOkHttpClient {
+- OkHttpClient client
++ T execute(OAuthClientRequest,Map<String,String>,String,Class<T>)
++ void shutdown()
+}
+class com.example.vchatmessenger.core.auth.HttpBearerAuth {
+- String scheme
+- String bearerToken
++ String getBearerToken()
++ void setBearerToken(String)
++ Response intercept(Chain)
+- {static} String upperCaseBearer(String)
+}
+class com.example.vchatmessenger.core.StringUtil {
++ {static} boolean containsIgnoreCase(String[],String)
++ {static} String join(String[],String)
++ {static} String join(Collection<String>,String)
+}
+interface com.example.vchatmessenger.core.api.GroupControllerApi {
+~ Call<Group> addMember(Long)
+~ Call<Group> addMessage(Long,Long)
+~ Call<Group> create2(CreateGroupDto)
+~ Call<Void> delete2(Long)
+~ Call<Group> editImage(Long,ChangeImageNewImageDataParameter)
+~ Call<Group> editImageType(Long)
+~ Call<Group> editName(Long,String)
+~ Call<Group> getChat(Long)
+~ Call<Group> getChatForUser(Long)
+~ Call<List<Group>> globalSearchChats(String)
+~ Call<Group> removeMember(Long)
+~ Call<Group> removeMessage(Long,Long)
+~ Call<List<Message>> searchMessages(Long,String)
+}
+class com.example.vchatmessenger.core.dto.CreateMessageDto {
++ {static} String SERIALIZED_NAME_CONTENT
+- String content
++ {static} String SERIALIZED_NAME_MESSAGE_CHAT_ID
+- Long messageChatId
++ CreateMessageDto content(String)
++ String getContent()
++ void setContent(String)
++ CreateMessageDto messageChatId(Long)
++ Long getMessageChatId()
++ void setMessageChatId(Long)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+interface com.example.vchatmessenger.api.UserControllerApi {
+~ Call<User> addChat(Long)
+~ Call<Boolean> canDeleteMessageChat(Long)
+~ Call<Boolean> canEditChat(Long)
+~ Call<Boolean> canWrite(Long)
+~ Call<Void> changeImage(String)
+~ Call<Void> changeName(String)
+~ Call<Void> changeNickname(String)
+~ Call<Void> changePassword(String)
+~ Call<Void> changePasswordBySecretKeys(String,Integer,String,Integer,String,Integer,String,String)
+~ Call<Void> changeSecretKeys(List<String>)
+~ Call<Boolean> checkPassword(String,String)
+~ Call<Boolean> checkSecretKeys(String,Integer,String,Integer,String,Integer,String)
+~ Call<User> create(CreateUserDto)
+~ Call<Void> delete()
+~ Call<Boolean> exists(String)
+~ Call<User> get()
+~ Call<List<Group>> getChats()
+~ Call<User> removeChat(Long)
+~ Call<List<Group>> searchChats(String)
+~ Call<Void> setTypeOfImage(Integer)
+}
+class com.example.vchatmessenger.JSON {
+- Gson gson
+- DateTypeAdapter dateTypeAdapter
+- SqlDateTypeAdapter sqlDateTypeAdapter
++ {static} GsonBuilder createGson()
+- {static} String getDiscriminatorValue(JsonElement,String)
+- {static} Class getClassByDiscriminator(Map,String)
++ Gson getGson()
++ JSON setGson(Gson)
++ JSON setDateFormat(DateFormat)
++ JSON setSqlDateFormat(DateFormat)
+}
+class com.example.vchatmessenger.JSON$SqlDateTypeAdapter {
+- DateFormat dateFormat
++ void setFormat(DateFormat)
++ void write(JsonWriter,java.sql.Date)
++ java.sql.Date read(JsonReader)
+}
+class com.example.vchatmessenger.JSON$DateTypeAdapter {
+- DateFormat dateFormat
++ void setFormat(DateFormat)
++ void write(JsonWriter,Date)
++ Date read(JsonReader)
+}
+class com.example.vchatmessenger.dto.CreateChannelDto {
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_UNREAD_MSG_COUNT
+- Long unreadMsgCount
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ {static} String SERIALIZED_NAME_MESSAGES_IDS
+- List<Long> messagesIds
++ {static} String SERIALIZED_NAME_MEMBERS_NICKNAMES
+- List<String> membersNicknames
++ {static} String SERIALIZED_NAME_IMAGE_DATA
+- String imageData
++ {static} String SERIALIZED_NAME_NICKNAME
+- String nickname
++ CreateChannelDto name(String)
++ String getName()
++ void setName(String)
++ CreateChannelDto unreadMsgCount(Long)
++ Long getUnreadMsgCount()
++ void setUnreadMsgCount(Long)
++ CreateChannelDto typeOfImage(Integer)
++ Integer getTypeOfImage()
++ void setTypeOfImage(Integer)
++ CreateChannelDto messagesIds(List<Long>)
++ CreateChannelDto addMessagesIdsItem(Long)
++ List<Long> getMessagesIds()
++ void setMessagesIds(List<Long>)
++ CreateChannelDto membersNicknames(List<String>)
++ CreateChannelDto addMembersNicknamesItem(String)
++ List<String> getMembersNicknames()
++ void setMembersNicknames(List<String>)
++ CreateChannelDto imageData(String)
++ String getImageData()
++ void setImageData(String)
++ CreateChannelDto nickname(String)
++ String getNickname()
++ void setNickname(String)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.dto.CreateUserDto {
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_NICKNAME
+- String nickname
++ {static} String SERIALIZED_NAME_PASSWORD
+- String password
++ {static} String SERIALIZED_NAME_SECRET_WORDS
+- List<String> secretWords
++ {static} String SERIALIZED_NAME_IMAGE_DATA
+- String imageData
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ CreateUserDto name(String)
++ String getName()
++ void setName(String)
++ CreateUserDto nickname(String)
++ String getNickname()
++ void setNickname(String)
++ CreateUserDto password(String)
++ String getPassword()
++ void setPassword(String)
++ CreateUserDto secretWords(List<String>)
++ CreateUserDto addSecretWordsItem(String)
++ List<String> getSecretWords()
++ void setSecretWords(List<String>)
++ CreateUserDto imageData(String)
++ String getImageData()
++ void setImageData(String)
++ CreateUserDto typeOfImage(Integer)
++ Integer getTypeOfImage()
++ void setTypeOfImage(Integer)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.dto.ChangeImageNewImageDataParameter {
++ {static} String SERIALIZED_NAME_SHORT
+- Integer _short
++ {static} String SERIALIZED_NAME_CHAR
+- String _char
++ {static} String SERIALIZED_NAME_INT
+- Integer _int
++ {static} String SERIALIZED_NAME_LONG
+- Long _long
++ {static} String SERIALIZED_NAME_FLOAT
+- Float _float
++ {static} String SERIALIZED_NAME_DOUBLE
+- Double _double
++ {static} String SERIALIZED_NAME_DIRECT
+- Boolean direct
++ {static} String SERIALIZED_NAME_READ_ONLY
+- Boolean readOnly
++ ChangeImageNewImageDataParameter _short(Integer)
++ Integer getShort()
++ void setShort(Integer)
++ ChangeImageNewImageDataParameter _char(String)
++ String getChar()
++ void setChar(String)
++ ChangeImageNewImageDataParameter _int(Integer)
++ Integer getInt()
++ void setInt(Integer)
++ ChangeImageNewImageDataParameter _long(Long)
++ Long getLong()
++ void setLong(Long)
++ ChangeImageNewImageDataParameter _float(Float)
++ Float getFloat()
++ void setFloat(Float)
++ ChangeImageNewImageDataParameter _double(Double)
++ Double getDouble()
++ void setDouble(Double)
++ ChangeImageNewImageDataParameter direct(Boolean)
++ Boolean getDirect()
++ void setDirect(Boolean)
++ ChangeImageNewImageDataParameter readOnly(Boolean)
++ Boolean getReadOnly()
++ void setReadOnly(Boolean)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.dto.Channel {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_UNREAD_MSG_COUNT
+- Long unreadMsgCount
++ {static} String SERIALIZED_NAME_TYPE
+- Integer type
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ {static} String SERIALIZED_NAME_OWNER_NICKNAME
+- String ownerNickname
++ {static} String SERIALIZED_NAME_MESSAGES_IDS
+- List<Long> messagesIds
++ {static} String SERIALIZED_NAME_MEMBERS_NICKNAMES
+- List<String> membersNicknames
++ {static} String SERIALIZED_NAME_IMAGE_DATA
+- String imageData
++ {static} String SERIALIZED_NAME_NICKNAME
+- String nickname
++ Channel id(Long)
++ Long getId()
++ void setId(Long)
++ Channel name(String)
++ String getName()
++ void setName(String)
++ Channel unreadMsgCount(Long)
++ Long getUnreadMsgCount()
++ void setUnreadMsgCount(Long)
++ Channel type(Integer)
++ Integer getType()
++ void setType(Integer)
++ Channel typeOfImage(Integer)
++ Integer getTypeOfImage()
++ void setTypeOfImage(Integer)
++ Channel ownerNickname(String)
++ String getOwnerNickname()
++ void setOwnerNickname(String)
++ Channel messagesIds(List<Long>)
++ Channel addMessagesIdsItem(Long)
++ List<Long> getMessagesIds()
++ void setMessagesIds(List<Long>)
++ Channel membersNicknames(List<String>)
++ Channel addMembersNicknamesItem(String)
++ List<String> getMembersNicknames()
++ void setMembersNicknames(List<String>)
++ Channel imageData(String)
++ String getImageData()
++ void setImageData(String)
++ Channel nickname(String)
++ String getNickname()
++ void setNickname(String)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.core.dto.ChangeImageNewImageDataParameter {
++ {static} String SERIALIZED_NAME_SHORT
+- Integer _short
++ {static} String SERIALIZED_NAME_CHAR
+- String _char
++ {static} String SERIALIZED_NAME_INT
+- Integer _int
++ {static} String SERIALIZED_NAME_LONG
+- Long _long
++ {static} String SERIALIZED_NAME_FLOAT
+- Float _float
++ {static} String SERIALIZED_NAME_DOUBLE
+- Double _double
++ {static} String SERIALIZED_NAME_DIRECT
+- Boolean direct
++ {static} String SERIALIZED_NAME_READ_ONLY
+- Boolean readOnly
++ ChangeImageNewImageDataParameter _short(Integer)
++ Integer getShort()
++ void setShort(Integer)
++ ChangeImageNewImageDataParameter _char(String)
++ String getChar()
++ void setChar(String)
++ ChangeImageNewImageDataParameter _int(Integer)
++ Integer getInt()
++ void setInt(Integer)
++ ChangeImageNewImageDataParameter _long(Long)
++ Long getLong()
++ void setLong(Long)
++ ChangeImageNewImageDataParameter _float(Float)
++ Float getFloat()
++ void setFloat(Float)
++ ChangeImageNewImageDataParameter _double(Double)
++ Double getDouble()
++ void setDouble(Double)
++ ChangeImageNewImageDataParameter direct(Boolean)
++ Boolean getDirect()
++ void setDirect(Boolean)
++ ChangeImageNewImageDataParameter readOnly(Boolean)
++ Boolean getReadOnly()
++ void setReadOnly(Boolean)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.dto.User {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_NICKNAME
+- String nickname
++ {static} String SERIALIZED_NAME_PASSWORD
+- String password
++ {static} String SERIALIZED_NAME_CHATS_IDS
+- List<Long> chatsIds
++ {static} String SERIALIZED_NAME_SECRET_KEYS
+- List<String> secretKeys
++ {static} String SERIALIZED_NAME_IMAGE_DATA
+- String imageData
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ User id(Long)
++ Long getId()
++ void setId(Long)
++ User name(String)
++ String getName()
++ void setName(String)
++ User nickname(String)
++ String getNickname()
++ void setNickname(String)
++ User password(String)
++ String getPassword()
++ void setPassword(String)
++ User chatsIds(List<Long>)
++ User addChatsIdsItem(Long)
++ List<Long> getChatsIds()
++ void setChatsIds(List<Long>)
++ User secretKeys(List<String>)
++ User addSecretKeysItem(String)
++ List<String> getSecretKeys()
++ void setSecretKeys(List<String>)
++ User imageData(String)
++ String getImageData()
++ void setImageData(String)
++ User typeOfImage(Integer)
++ Integer getTypeOfImage()
++ void setTypeOfImage(Integer)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+interface com.example.vchatmessenger.core.api.UserControllerApi {
+~ Call<User> addChat(Long)
+~ Call<Boolean> canDeleteMessageChat(Long)
+~ Call<Boolean> canEditChat(Long)
+~ Call<Boolean> canWrite(Long)
+~ Call<Void> changeImage(ChangeImageNewImageDataParameter)
+~ Call<Void> changeName(String)
+~ Call<Void> changeNickname(String)
+~ Call<Void> changePassword(String)
+~ Call<Void> changePasswordBySecretKeys(String,Integer,String,Integer,String,Integer,String,String)
+~ Call<Void> changeSecretKeys(List<String>)
+~ Call<Boolean> checkPassword(String,String)
+~ Call<Boolean> checkSecretKeys(String,Integer,String,Integer,String,Integer,String)
+~ Call<User> create(CreateUserDto)
+~ Call<Void> delete()
+~ Call<User> get()
+~ Call<List<Group>> getChats()
+~ Call<User> removeChat(Long)
+~ Call<List<Group>> searchChats(String)
+}
+class com.example.vchatmessenger.core.ServerConfiguration {
++ String URL
++ String description
++ Map<String,ServerVariable> variables
++ String URL(Map<String,String>)
++ String URL()
+}
+class com.example.vchatmessenger.core.CollectionFormats {
+}
+class com.example.vchatmessenger.core.CollectionFormats$CSVParams {
+# List<String> params
++ List<String> getParams()
++ void setParams(List<String>)
++ String toString()
+}
+class com.example.vchatmessenger.core.CollectionFormats$SPACEParams {
+}
+class com.example.vchatmessenger.core.CollectionFormats$SSVParams {
++ String toString()
+}
+class com.example.vchatmessenger.core.CollectionFormats$TSVParams {
++ String toString()
+}
+class com.example.vchatmessenger.core.CollectionFormats$PIPESParams {
++ String toString()
+}
+interface com.example.vchatmessenger.api.ChannelControllerApi {
+~ Call<Channel> addMember1(Long)
+~ Call<Channel> addMessage1(Long,Long)
+~ Call<Channel> create3(CreateChannelDto)
+~ Call<Void> delete3(Long)
+~ Call<Channel> editChannelImageType(Long)
+~ Call<Channel> editImage1(Long,String)
+~ Call<Channel> editName1(Long,String)
+~ Call<Channel> editNickname(Long,String)
+~ Call<Channel> removeMember1(Long)
+~ Call<Channel> removeMessage1(Long,Long)
+~ Call<List<Message>> searchMessages1(Long,String)
+}
+class com.example.vchatmessenger.core.dto.User {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_NICKNAME
+- String nickname
++ {static} String SERIALIZED_NAME_PASSWORD
+- String password
++ {static} String SERIALIZED_NAME_CHATS_IDS
+- List<Long> chatsIds
++ {static} String SERIALIZED_NAME_SECRET_KEYS
+- List<String> secretKeys
++ User id(Long)
++ Long getId()
++ void setId(Long)
++ User name(String)
++ String getName()
++ void setName(String)
++ User nickname(String)
++ String getNickname()
++ void setNickname(String)
++ User password(String)
++ String getPassword()
++ void setPassword(String)
++ User chatsIds(List<Long>)
++ User addChatsIdsItem(Long)
++ List<Long> getChatsIds()
++ void setChatsIds(List<Long>)
++ User secretKeys(List<String>)
++ User addSecretKeysItem(String)
++ List<String> getSecretKeys()
++ void setSecretKeys(List<String>)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.dto.Message {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_CONTENT
+- String content
++ {static} String SERIALIZED_NAME_MESSAGE_CHAT_ID
+- Long messageChatId
++ {static} String SERIALIZED_NAME_OWNER_NICKNAME
+- String ownerNickname
++ {static} String SERIALIZED_NAME_READERS_NICKNAMES
+- List<String> readersNicknames
++ Message id(Long)
++ Long getId()
++ void setId(Long)
++ Message content(String)
++ String getContent()
++ void setContent(String)
++ Message messageChatId(Long)
++ Long getMessageChatId()
++ void setMessageChatId(Long)
++ Message ownerNickname(String)
++ String getOwnerNickname()
++ void setOwnerNickname(String)
++ Message readersNicknames(List<String>)
++ Message addReadersNicknamesItem(String)
++ List<String> getReadersNicknames()
++ void setReadersNicknames(List<String>)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+interface com.example.vchatmessenger.api.PasswordControllerApi {
+~ Call<Integer> checkPasswordAllConditions(String,String)
+~ Call<Integer> checkPasswordConditions(String)
+~ Call<Integer> checkPasswordConfirmation(String,String)
+}
+class com.example.vchatmessenger.core.ServerVariable {
++ String description
++ String defaultValue
++ HashSet<String> enumValues
+}
+interface com.example.vchatmessenger.core.api.ChannelControllerApi {
+~ Call<Channel> addMember1(Long)
+~ Call<Channel> addMessage1(Long,Long)
+~ Call<Channel> create3(CreateChannelDto)
+~ Call<Void> delete3(Long)
+~ Call<Channel> editChannelImageType(Long)
+~ Call<Channel> editImage1(Long,ChangeImageNewImageDataParameter)
+~ Call<Channel> editName1(Long,String)
+~ Call<Channel> editNickname(Long,String)
+~ Call<Channel> removeMember1(Long)
+~ Call<Channel> removeMessage1(Long,Long)
+~ Call<List<Message>> searchMessages1(Long,String)
+}
+class com.example.vchatmessenger.auth.HttpBasicAuth {
+- String username
+- String password
++ String getUsername()
++ void setUsername(String)
++ String getPassword()
++ void setPassword(String)
++ void setCredentials(String,String)
++ Response intercept(Chain)
+}
+class com.example.vchatmessenger.core.auth.HttpBasicAuth {
+- String username
+- String password
++ String getUsername()
++ void setUsername(String)
++ String getPassword()
++ void setPassword(String)
++ void setCredentials(String,String)
++ Response intercept(Chain)
+}
+class com.example.vchatmessenger.ServerVariable {
++ String description
++ String defaultValue
++ HashSet<String> enumValues
+}
+class com.example.vchatmessenger.core.ApiClient {
+- Map<String,Interceptor> apiAuthorizations
+- OkHttpClient.Builder okBuilder
+- Retrofit.Builder adapterBuilder
+- JSON json
+- OkHttpClient okHttpClient
++ void createDefaultAdapter()
++ S createService(Class<S>)
++ ApiClient setDateFormat(DateFormat)
++ ApiClient setSqlDateFormat(DateFormat)
++ ApiClient setOffsetDateTimeFormat(DateTimeFormatter)
++ ApiClient setLocalDateFormat(DateTimeFormatter)
++ ApiClient setApiKey(String)
++ ApiClient setBearerToken(String)
++ ApiClient setCredentials(String,String)
++ ApiClient addAuthorization(String,Interceptor)
++ Map<String,Interceptor> getApiAuthorizations()
++ ApiClient setApiAuthorizations(Map<String,Interceptor>)
++ Retrofit.Builder getAdapterBuilder()
++ ApiClient setAdapterBuilder(Retrofit.Builder)
++ OkHttpClient.Builder getOkBuilder()
++ void addAuthsToOkBuilder(OkHttpClient.Builder)
++ void configureFromOkclient(OkHttpClient)
+}
+class com.example.vchatmessenger.core.GsonResponseBodyConverterToString {
+- Gson gson
+- Type type
++ T convert(ResponseBody)
+}
+class com.example.vchatmessenger.core.GsonCustomConverterFactory {
+- Gson gson
+- GsonConverterFactory gsonConverterFactory
++ {static} GsonCustomConverterFactory create(Gson)
++ Converter<ResponseBody,?> responseBodyConverter(Type,Annotation[],Retrofit)
++ Converter<?,RequestBody> requestBodyConverter(Type,Annotation[],Annotation[],Retrofit)
+}
+class com.example.vchatmessenger.StringUtil {
++ {static} boolean containsIgnoreCase(String[],String)
++ {static} String join(String[],String)
++ {static} String join(Collection<String>,String)
+}
+class com.example.vchatmessenger.core.dto.CreateChannelDto {
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_UNREAD_MSG_COUNT
+- Long unreadMsgCount
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ {static} String SERIALIZED_NAME_MESSAGES_IDS
+- List<Long> messagesIds
++ {static} String SERIALIZED_NAME_MEMBERS_NICKNAMES
+- List<String> membersNicknames
++ {static} String SERIALIZED_NAME_NICKNAME
+- String nickname
++ CreateChannelDto name(String)
++ String getName()
++ void setName(String)
++ CreateChannelDto unreadMsgCount(Long)
++ Long getUnreadMsgCount()
++ void setUnreadMsgCount(Long)
++ CreateChannelDto typeOfImage(Integer)
++ Integer getTypeOfImage()
++ void setTypeOfImage(Integer)
++ CreateChannelDto messagesIds(List<Long>)
++ CreateChannelDto addMessagesIdsItem(Long)
++ List<Long> getMessagesIds()
++ void setMessagesIds(List<Long>)
++ CreateChannelDto membersNicknames(List<String>)
++ CreateChannelDto addMembersNicknamesItem(String)
++ List<String> getMembersNicknames()
++ void setMembersNicknames(List<String>)
++ CreateChannelDto nickname(String)
++ String getNickname()
++ void setNickname(String)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+interface com.example.vchatmessenger.api.NameControllerApi {
+~ Call<Integer> checkName(String)
+}
+class com.example.vchatmessenger.core.dto.CreateUserDto {
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_NICKNAME
+- String nickname
++ {static} String SERIALIZED_NAME_PASSWORD
+- String password
++ {static} String SERIALIZED_NAME_SECRET_WORDS
+- List<String> secretWords
++ CreateUserDto name(String)
++ String getName()
++ void setName(String)
++ CreateUserDto nickname(String)
++ String getNickname()
++ void setNickname(String)
++ CreateUserDto password(String)
++ String getPassword()
++ void setPassword(String)
++ CreateUserDto secretWords(List<String>)
++ CreateUserDto addSecretWordsItem(String)
++ List<String> getSecretWords()
++ void setSecretWords(List<String>)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.ApiClient {
+- Map<String,Interceptor> apiAuthorizations
+- OkHttpClient.Builder okBuilder
+- Retrofit.Builder adapterBuilder
+- JSON json
+- OkHttpClient okHttpClient
++ void createDefaultAdapter()
++ S createService(Class<S>)
++ ApiClient setDateFormat(DateFormat)
++ ApiClient setSqlDateFormat(DateFormat)
++ ApiClient setApiKey(String)
++ ApiClient setBearerToken(String)
++ ApiClient setCredentials(String,String)
++ ApiClient addAuthorization(String,Interceptor)
++ Map<String,Interceptor> getApiAuthorizations()
++ ApiClient setApiAuthorizations(Map<String,Interceptor>)
++ Retrofit.Builder getAdapterBuilder()
++ ApiClient setAdapterBuilder(Retrofit.Builder)
++ OkHttpClient.Builder getOkBuilder()
++ void addAuthsToOkBuilder(OkHttpClient.Builder)
++ void configureFromOkclient(OkHttpClient)
+}
+class com.example.vchatmessenger.GsonResponseBodyConverterToString {
+- Gson gson
+- Type type
++ T convert(ResponseBody)
+}
+class com.example.vchatmessenger.GsonCustomConverterFactory {
+- Gson gson
+- GsonConverterFactory gsonConverterFactory
++ {static} GsonCustomConverterFactory create(Gson)
++ Converter<ResponseBody,?> responseBodyConverter(Type,Annotation[],Retrofit)
++ Converter<?,RequestBody> requestBodyConverter(Type,Annotation[],Annotation[],Retrofit)
+}
+class com.example.vchatmessenger.dto.CreateGroupDto {
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_UNREAD_MSG_COUNT
+- Long unreadMsgCount
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ {static} String SERIALIZED_NAME_MESSAGES_IDS
+- List<Long> messagesIds
++ {static} String SERIALIZED_NAME_MEMBERS_NICKNAMES
+- List<String> membersNicknames
++ {static} String SERIALIZED_NAME_IMAGE_DATA
+- String imageData
++ CreateGroupDto name(String)
++ String getName()
++ void setName(String)
++ CreateGroupDto unreadMsgCount(Long)
++ Long getUnreadMsgCount()
++ void setUnreadMsgCount(Long)
++ CreateGroupDto typeOfImage(Integer)
++ Integer getTypeOfImage()
++ void setTypeOfImage(Integer)
++ CreateGroupDto messagesIds(List<Long>)
++ CreateGroupDto addMessagesIdsItem(Long)
++ List<Long> getMessagesIds()
++ void setMessagesIds(List<Long>)
++ CreateGroupDto membersNicknames(List<String>)
++ CreateGroupDto addMembersNicknamesItem(String)
++ List<String> getMembersNicknames()
++ void setMembersNicknames(List<String>)
++ CreateGroupDto imageData(String)
++ String getImageData()
++ void setImageData(String)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.dto.Group {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_UNREAD_MSG_COUNT
+- Long unreadMsgCount
++ {static} String SERIALIZED_NAME_TYPE
+- Integer type
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ {static} String SERIALIZED_NAME_OWNER_NICKNAME
+- String ownerNickname
++ {static} String SERIALIZED_NAME_MESSAGES_IDS
+- List<Long> messagesIds
++ {static} String SERIALIZED_NAME_MEMBERS_NICKNAMES
+- List<String> membersNicknames
++ {static} String SERIALIZED_NAME_IMAGE_DATA
+- String imageData
++ Group id(Long)
++ Long getId()
++ void setId(Long)
++ Group name(String)
++ String getName()
++ void setName(String)
++ Group unreadMsgCount(Long)
++ Long getUnreadMsgCount()
++ void setUnreadMsgCount(Long)
++ Group type(Integer)
++ Integer getType()
++ void setType(Integer)
++ Group typeOfImage(Integer)
++ Integer getTypeOfImage()
++ void setTypeOfImage(Integer)
++ Group ownerNickname(String)
++ String getOwnerNickname()
++ void setOwnerNickname(String)
++ Group messagesIds(List<Long>)
++ Group addMessagesIdsItem(Long)
++ List<Long> getMessagesIds()
++ void setMessagesIds(List<Long>)
++ Group membersNicknames(List<String>)
++ Group addMembersNicknamesItem(String)
++ List<String> getMembersNicknames()
++ void setMembersNicknames(List<String>)
++ Group imageData(String)
++ String getImageData()
++ void setImageData(String)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.core.JSON {
+- Gson gson
+- DateTypeAdapter dateTypeAdapter
+- SqlDateTypeAdapter sqlDateTypeAdapter
+- OffsetDateTimeTypeAdapter offsetDateTimeTypeAdapter
+- LocalDateTypeAdapter localDateTypeAdapter
++ {static} GsonBuilder createGson()
+- {static} String getDiscriminatorValue(JsonElement,String)
+- {static} Class getClassByDiscriminator(Map,String)
++ Gson getGson()
++ JSON setGson(Gson)
++ JSON setOffsetDateTimeFormat(DateTimeFormatter)
++ JSON setLocalDateFormat(DateTimeFormatter)
++ JSON setDateFormat(DateFormat)
++ JSON setSqlDateFormat(DateFormat)
+}
+class com.example.vchatmessenger.core.JSON$OffsetDateTimeTypeAdapter {
+- DateTimeFormatter formatter
++ void setFormat(DateTimeFormatter)
++ void write(JsonWriter,OffsetDateTime)
++ OffsetDateTime read(JsonReader)
+}
+class com.example.vchatmessenger.core.JSON$LocalDateTypeAdapter {
+- DateTimeFormatter formatter
++ void setFormat(DateTimeFormatter)
++ void write(JsonWriter,LocalDate)
++ LocalDate read(JsonReader)
+}
+class com.example.vchatmessenger.core.JSON$SqlDateTypeAdapter {
+- DateFormat dateFormat
++ void setFormat(DateFormat)
++ void write(JsonWriter,java.sql.Date)
++ java.sql.Date read(JsonReader)
+}
+class com.example.vchatmessenger.core.JSON$DateTypeAdapter {
+- DateFormat dateFormat
++ void setFormat(DateFormat)
++ void write(JsonWriter,Date)
++ Date read(JsonReader)
+}
+class com.example.vchatmessenger.core.dto.Group {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_UNREAD_MSG_COUNT
+- Long unreadMsgCount
++ {static} String SERIALIZED_NAME_TYPE
+- Integer type
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ {static} String SERIALIZED_NAME_OWNER_NICKNAME
+- String ownerNickname
++ {static} String SERIALIZED_NAME_MESSAGES_IDS
+- List<Long> messagesIds
++ {static} String SERIALIZED_NAME_MEMBERS_NICKNAMES
+- List<String> membersNicknames
++ Group id(Long)
++ Long getId()
++ void setId(Long)
++ Group name(String)
++ String getName()
++ void setName(String)
++ Group unreadMsgCount(Long)
++ Long getUnreadMsgCount()
++ void setUnreadMsgCount(Long)
++ Group type(Integer)
++ Integer getType()
++ void setType(Integer)
++ Group typeOfImage(Integer)
++ Integer getTypeOfImage()
++ void setTypeOfImage(Integer)
++ Group ownerNickname(String)
++ String getOwnerNickname()
++ void setOwnerNickname(String)
++ Group messagesIds(List<Long>)
++ Group addMessagesIdsItem(Long)
++ List<Long> getMessagesIds()
++ void setMessagesIds(List<Long>)
++ Group membersNicknames(List<String>)
++ Group addMembersNicknamesItem(String)
++ List<String> getMembersNicknames()
++ void setMembersNicknames(List<String>)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+interface com.example.vchatmessenger.core.api.MessageControllerApi {
+~ Call<Message> addReader(Long)
+~ Call<Message> create1(CreateMessageDto)
+~ Call<Void> delete1(Long)
+~ Call<Message> get1(Long)
+~ Call<List<User>> getReaders(Long)
+}
+class com.example.vchatmessenger.auth.OAuthOkHttpClient {
+- OkHttpClient client
++ T execute(OAuthClientRequest,Map<String,String>,String,Class<T>)
++ void shutdown()
+}
+class com.example.vchatmessenger.auth.HttpBearerAuth {
+- String scheme
+- String bearerToken
++ String getBearerToken()
++ void setBearerToken(String)
++ Response intercept(Chain)
+- {static} String upperCaseBearer(String)
+}
+interface com.example.vchatmessenger.api.NicknameControllerApi {
+~ Call<Integer> checkNicknameForChannel(String)
+~ Call<Integer> checkNicknameForUser(String)
+}
+class com.example.vchatmessenger.dto.EditImageImageDataParameter {
++ {static} String SERIALIZED_NAME_SHORT
+- Integer _short
++ {static} String SERIALIZED_NAME_CHAR
+- String _char
++ {static} String SERIALIZED_NAME_INT
+- Integer _int
++ {static} String SERIALIZED_NAME_LONG
+- Long _long
++ {static} String SERIALIZED_NAME_FLOAT
+- Float _float
++ {static} String SERIALIZED_NAME_DOUBLE
+- Double _double
++ {static} String SERIALIZED_NAME_DIRECT
+- Boolean direct
++ {static} String SERIALIZED_NAME_READ_ONLY
+- Boolean readOnly
++ EditImageImageDataParameter _short(Integer)
++ Integer getShort()
++ void setShort(Integer)
++ EditImageImageDataParameter _char(String)
++ String getChar()
++ void setChar(String)
++ EditImageImageDataParameter _int(Integer)
++ Integer getInt()
++ void setInt(Integer)
++ EditImageImageDataParameter _long(Long)
++ Long getLong()
++ void setLong(Long)
++ EditImageImageDataParameter _float(Float)
++ Float getFloat()
++ void setFloat(Float)
++ EditImageImageDataParameter _double(Double)
++ Double getDouble()
++ void setDouble(Double)
++ EditImageImageDataParameter direct(Boolean)
++ Boolean getDirect()
++ void setDirect(Boolean)
++ EditImageImageDataParameter readOnly(Boolean)
++ Boolean getReadOnly()
++ void setReadOnly(Boolean)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.core.dto.CreateGroupDto {
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_UNREAD_MSG_COUNT
+- Long unreadMsgCount
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ {static} String SERIALIZED_NAME_MESSAGES_IDS
+- List<Long> messagesIds
++ {static} String SERIALIZED_NAME_MEMBERS_NICKNAMES
+- List<String> membersNicknames
++ CreateGroupDto name(String)
++ String getName()
++ void setName(String)
++ CreateGroupDto unreadMsgCount(Long)
++ Long getUnreadMsgCount()
++ void setUnreadMsgCount(Long)
++ CreateGroupDto typeOfImage(Integer)
++ Integer getTypeOfImage()
++ void setTypeOfImage(Integer)
++ CreateGroupDto messagesIds(List<Long>)
++ CreateGroupDto addMessagesIdsItem(Long)
++ List<Long> getMessagesIds()
++ void setMessagesIds(List<Long>)
++ CreateGroupDto membersNicknames(List<String>)
++ CreateGroupDto addMembersNicknamesItem(String)
++ List<String> getMembersNicknames()
++ void setMembersNicknames(List<String>)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.dto.CreateMessageDto {
++ {static} String SERIALIZED_NAME_CONTENT
+- String content
++ {static} String SERIALIZED_NAME_MESSAGE_CHAT_ID
+- Long messageChatId
++ CreateMessageDto content(String)
++ String getContent()
++ void setContent(String)
++ CreateMessageDto messageChatId(Long)
++ Long getMessageChatId()
++ void setMessageChatId(Long)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.ServerConfiguration {
++ String URL
++ String description
++ Map<String,ServerVariable> variables
++ String URL(Map<String,String>)
++ String URL()
+}
+interface com.example.vchatmessenger.api.MessageControllerApi {
+~ Call<Message> addReader(Long)
+~ Call<Message> create1(CreateMessageDto)
+~ Call<Void> delete1(Long)
+~ Call<Message> get1(Long)
+~ Call<List<User>> getReaders(Long)
+}
+interface com.example.vchatmessenger.api.GroupControllerApi {
+~ Call<Group> addMember(Long)
+~ Call<Group> addMessage(Long,Long)
+~ Call<Group> create2(CreateGroupDto)
+~ Call<Void> delete2(Long)
+~ Call<Group> editImage(Long,String)
+~ Call<Group> editImageType(Long)
+~ Call<Group> editName(Long,String)
+~ Call<Group> getChat(Long)
+~ Call<Group> getChatForUser(Long)
+~ Call<List<Group>> globalSearchChats(String)
+~ Call<Group> removeMember(Long)
+~ Call<Group> removeMessage(Long,Long)
+~ Call<List<Message>> searchMessages(Long,String)
+}
+interface com.example.vchatmessenger.core.api.NameControllerApi {
+~ Call<Integer> checkName(String)
+}
+class com.example.vchatmessenger.core.dto.Message {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_CONTENT
+- String content
++ {static} String SERIALIZED_NAME_MESSAGE_CHAT_ID
+- Long messageChatId
++ {static} String SERIALIZED_NAME_OWNER_NICKNAME
+- String ownerNickname
++ {static} String SERIALIZED_NAME_READERS_NICKNAMES
+- List<String> readersNicknames
++ Message id(Long)
++ Long getId()
++ void setId(Long)
++ Message content(String)
++ String getContent()
++ void setContent(String)
++ Message messageChatId(Long)
++ Long getMessageChatId()
++ void setMessageChatId(Long)
++ Message ownerNickname(String)
++ String getOwnerNickname()
++ void setOwnerNickname(String)
++ Message readersNicknames(List<String>)
++ Message addReadersNicknamesItem(String)
++ List<String> getReadersNicknames()
++ void setReadersNicknames(List<String>)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.core.dto.Channel {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_UNREAD_MSG_COUNT
+- Long unreadMsgCount
++ {static} String SERIALIZED_NAME_TYPE
+- Integer type
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ {static} String SERIALIZED_NAME_OWNER_NICKNAME
+- String ownerNickname
++ {static} String SERIALIZED_NAME_MESSAGES_IDS
+- List<Long> messagesIds
++ {static} String SERIALIZED_NAME_MEMBERS_NICKNAMES
+- List<String> membersNicknames
++ {static} String SERIALIZED_NAME_NICKNAME
+- String nickname
++ Channel id(Long)
++ Long getId()
++ void setId(Long)
++ Channel name(String)
++ String getName()
++ void setName(String)
++ Channel unreadMsgCount(Long)
++ Long getUnreadMsgCount()
++ void setUnreadMsgCount(Long)
++ Channel type(Integer)
++ Integer getType()
++ void setType(Integer)
++ Channel typeOfImage(Integer)
++ Integer getTypeOfImage()
++ void setTypeOfImage(Integer)
++ Channel ownerNickname(String)
++ String getOwnerNickname()
++ void setOwnerNickname(String)
++ Channel messagesIds(List<Long>)
++ Channel addMessagesIdsItem(Long)
++ List<Long> getMessagesIds()
++ void setMessagesIds(List<Long>)
++ Channel membersNicknames(List<String>)
++ Channel addMembersNicknamesItem(String)
++ List<String> getMembersNicknames()
++ void setMembersNicknames(List<String>)
++ Channel nickname(String)
++ String getNickname()
++ void setNickname(String)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+- String toIndentedString(Object)
+}
+class com.example.vchatmessenger.core.auth.ApiKeyAuth {
+- String location
+- String paramName
+- String apiKey
++ String getLocation()
++ String getParamName()
++ String getApiKey()
++ void setApiKey(String)
++ Response intercept(Chain)
+}
+class com.example.vchatmessenger.auth.ApiKeyAuth {
+- String location
+- String paramName
+- String apiKey
++ String getLocation()
++ String getParamName()
++ String getApiKey()
++ void setApiKey(String)
++ Response intercept(Chain)
+}
+class com.example.vchatmessenger.CollectionFormats {
+}
+class com.example.vchatmessenger.CollectionFormats$CSVParams {
+# List<String> params
++ List<String> getParams()
++ void setParams(List<String>)
++ String toString()
+}
+class com.example.vchatmessenger.CollectionFormats$SPACEParams {
+}
+class com.example.vchatmessenger.CollectionFormats$SSVParams {
++ String toString()
+}
+class com.example.vchatmessenger.CollectionFormats$TSVParams {
++ String toString()
+}
+class com.example.vchatmessenger.CollectionFormats$PIPESParams {
++ String toString()
+}
+interface com.example.vchatmessenger.core.api.NicknameControllerApi {
+~ Call<Integer> checkNicknameForChannel(String)
+~ Call<Integer> checkNicknameForUser(String)
+}
+
+
+org.apache.oltu.oauth2.client.HttpClient <|.. com.example.vchatmessenger.core.auth.OAuthOkHttpClient
+okhttp3.Interceptor <|.. com.example.vchatmessenger.core.auth.HttpBearerAuth
+com.example.vchatmessenger.JSON +.. com.example.vchatmessenger.JSON$SqlDateTypeAdapter
+com.example.vchatmessenger.TypeAdapter <|-- com.example.vchatmessenger.JSON$SqlDateTypeAdapter
+com.example.vchatmessenger.JSON +.. com.example.vchatmessenger.JSON$DateTypeAdapter
+com.example.vchatmessenger.TypeAdapter <|-- com.example.vchatmessenger.JSON$DateTypeAdapter
+com.example.vchatmessenger.core.CollectionFormats +.. com.example.vchatmessenger.core.CollectionFormats$CSVParams
+com.example.vchatmessenger.core.CollectionFormats +.. com.example.vchatmessenger.core.CollectionFormats$SPACEParams
+com.example.vchatmessenger.core.SSVParams <|-- com.example.vchatmessenger.core.CollectionFormats$SPACEParams
+com.example.vchatmessenger.core.CollectionFormats +.. com.example.vchatmessenger.core.CollectionFormats$SSVParams
+com.example.vchatmessenger.core.CSVParams <|-- com.example.vchatmessenger.core.CollectionFormats$SSVParams
+com.example.vchatmessenger.core.CollectionFormats +.. com.example.vchatmessenger.core.CollectionFormats$TSVParams
+com.example.vchatmessenger.core.CSVParams <|-- com.example.vchatmessenger.core.CollectionFormats$TSVParams
+com.example.vchatmessenger.core.CollectionFormats +.. com.example.vchatmessenger.core.CollectionFormats$PIPESParams
+com.example.vchatmessenger.core.CSVParams <|-- com.example.vchatmessenger.core.CollectionFormats$PIPESParams
+okhttp3.Interceptor <|.. com.example.vchatmessenger.auth.HttpBasicAuth
+okhttp3.Interceptor <|.. com.example.vchatmessenger.core.auth.HttpBasicAuth
+retrofit2.Converter <|.. com.example.vchatmessenger.core.GsonResponseBodyConverterToString
+com.example.vchatmessenger.core.Factory <|-- com.example.vchatmessenger.core.GsonCustomConverterFactory
+retrofit2.Converter <|.. com.example.vchatmessenger.GsonResponseBodyConverterToString
+com.example.vchatmessenger.Factory <|-- com.example.vchatmessenger.GsonCustomConverterFactory
+com.example.vchatmessenger.core.JSON +.. com.example.vchatmessenger.core.JSON$OffsetDateTimeTypeAdapter
+com.example.vchatmessenger.core.TypeAdapter <|-- com.example.vchatmessenger.core.JSON$OffsetDateTimeTypeAdapter
+com.example.vchatmessenger.core.JSON +.. com.example.vchatmessenger.core.JSON$LocalDateTypeAdapter
+com.example.vchatmessenger.core.TypeAdapter <|-- com.example.vchatmessenger.core.JSON$LocalDateTypeAdapter
+com.example.vchatmessenger.core.JSON +.. com.example.vchatmessenger.core.JSON$SqlDateTypeAdapter
+com.example.vchatmessenger.core.TypeAdapter <|-- com.example.vchatmessenger.core.JSON$SqlDateTypeAdapter
+com.example.vchatmessenger.core.JSON +.. com.example.vchatmessenger.core.JSON$DateTypeAdapter
+com.example.vchatmessenger.core.TypeAdapter <|-- com.example.vchatmessenger.core.JSON$DateTypeAdapter
+org.apache.oltu.oauth2.client.HttpClient <|.. com.example.vchatmessenger.auth.OAuthOkHttpClient
+okhttp3.Interceptor <|.. com.example.vchatmessenger.auth.HttpBearerAuth
+okhttp3.Interceptor <|.. com.example.vchatmessenger.core.auth.ApiKeyAuth
+okhttp3.Interceptor <|.. com.example.vchatmessenger.auth.ApiKeyAuth
+com.example.vchatmessenger.CollectionFormats +.. com.example.vchatmessenger.CollectionFormats$CSVParams
+com.example.vchatmessenger.CollectionFormats +.. com.example.vchatmessenger.CollectionFormats$SPACEParams
+com.example.vchatmessenger.SSVParams <|-- com.example.vchatmessenger.CollectionFormats$SPACEParams
+com.example.vchatmessenger.CollectionFormats +.. com.example.vchatmessenger.CollectionFormats$SSVParams
+com.example.vchatmessenger.CSVParams <|-- com.example.vchatmessenger.CollectionFormats$SSVParams
+com.example.vchatmessenger.CollectionFormats +.. com.example.vchatmessenger.CollectionFormats$TSVParams
+com.example.vchatmessenger.CSVParams <|-- com.example.vchatmessenger.CollectionFormats$TSVParams
+com.example.vchatmessenger.CollectionFormats +.. com.example.vchatmessenger.CollectionFormats$PIPESParams
+com.example.vchatmessenger.CSVParams <|-- com.example.vchatmessenger.CollectionFormats$PIPESParams
+@enduml

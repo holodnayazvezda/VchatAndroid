@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="horizontal">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/chat_image"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="5dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars"
+        app:shapeAppearanceOverlay="@style/circleImageView"/>
+
+    <TextView
+        android:id="@+id/name_of_chat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="40dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Имя чата"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toStartOf="@+id/last_msg_time"
+        app:layout_constraintStart_toEndOf="@+id/chat_image"
+        app:layout_constraintTop_toTopOf="@+id/chat_image" />
+
+    <TextView
+        android:id="@+id/last_msg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Последнее сообщение"
+        app:layout_constraintEnd_toStartOf="@+id/unread_msg_count"
+        app:layout_constraintStart_toEndOf="@+id/chat_image"
+        app:layout_constraintTop_toBottomOf="@+id/name_of_chat" />
+
+    <TextView
+        android:id="@+id/last_msg_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/name_of_chat" />
+
+    <TextView
+        android:id="@+id/unread_msg_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/last_msg"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,66 @@
+@startuml
+class Message {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_CONTENT
+- String content
++ {static} String SERIALIZED_NAME_MESSAGE_CHAT_ID
+- Long messageChatId
++ {static} String SERIALIZED_NAME_OWNER_NICKNAME
+- String ownerNickname
++ {static} String SERIALIZED_NAME_READERS_NICKNAMES
+- List<String> readersNicknames
+}
+class Channel {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_UNREAD_MSG_COUNT
+- Long unreadMsgCount
++ {static} String SERIALIZED_NAME_TYPE
+- Integer type
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ {static} String SERIALIZED_NAME_OWNER_NICKNAME
+- String ownerNickname
++ {static} String SERIALIZED_NAME_MESSAGES_IDS
+- List<Long> messagesIds
++ {static} String SERIALIZED_NAME_MEMBERS_NICKNAMES
+- List<String> membersNicknames
++ {static} String SERIALIZED_NAME_NICKNAME
+- String nickname
+}
+class User {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_NICKNAME
+- String nickname
++ {static} String SERIALIZED_NAME_PASSWORD
+- String password
++ {static} String SERIALIZED_NAME_CHATS_IDS
+- List<Long> chatsIds
++ {static} String SERIALIZED_NAME_SECRET_KEYS
+- List<String> secretKeys
+}
+class Group {
++ {static} String SERIALIZED_NAME_ID
+- Long id
++ {static} String SERIALIZED_NAME_NAME
+- String name
++ {static} String SERIALIZED_NAME_UNREAD_MSG_COUNT
+- Long unreadMsgCount
++ {static} String SERIALIZED_NAME_TYPE
+- Integer type
++ {static} String SERIALIZED_NAME_TYPE_OF_IMAGE
+- Integer typeOfImage
++ {static} String SERIALIZED_NAME_OWNER_NICKNAME
+- String ownerNickname
++ {static} String SERIALIZED_NAME_MESSAGES_IDS
+- List<Long> messagesIds
++ {static} String SERIALIZED_NAME_MEMBERS_NICKNAMES
+- List<String> membersNicknames
+}
+@enduml

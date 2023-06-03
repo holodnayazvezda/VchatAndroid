@@ -1,0 +1,1392 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:3000
+  description: Generated server url
+paths:
+  /v1.0/user/remove_chat:
+    put:
+      tags:
+      - user-controller
+      operationId: removeChat
+      parameters:
+      - name: newChatId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+      security:
+      - basicAuth: []
+  /v1.0/user/change_secret_keys:
+    put:
+      tags:
+      - user-controller
+      operationId: changeSecretKeys
+      parameters:
+      - name: secretKeys
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        "200":
+          description: OK
+      security:
+      - basicAuth: []
+  /v1.0/user/change_password_by_secret_keys:
+    put:
+      tags:
+      - user-controller
+      operationId: changePasswordBySecretKeys
+      parameters:
+      - name: userNickname
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: a
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: a_value
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: b
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: b_value
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: c
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: c_value
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: newPassword
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /v1.0/user/change_password:
+    put:
+      tags:
+      - user-controller
+      operationId: changePassword
+      parameters:
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+      security:
+      - basicAuth: []
+  /v1.0/user/change_nickname:
+    put:
+      tags:
+      - user-controller
+      operationId: changeNickname
+      parameters:
+      - name: newNickname
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+      security:
+      - basicAuth: []
+  /v1.0/user/change_name:
+    put:
+      tags:
+      - user-controller
+      operationId: changeName
+      parameters:
+      - name: newName
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+      security:
+      - basicAuth: []
+  /v1.0/user/change_image:
+    put:
+      tags:
+      - user-controller
+      operationId: changeImage
+      parameters:
+      - name: newImageData
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+      security:
+      - basicAuth: []
+  /v1.0/user/add_chat:
+    put:
+      tags:
+      - user-controller
+      operationId: addChat
+      parameters:
+      - name: newChatId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+      security:
+      - basicAuth: []
+  /v1.0/message/add_reader:
+    put:
+      tags:
+      - message-controller
+      operationId: addReader
+      parameters:
+      - name: messageId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Message'
+      security:
+      - basicAuth: []
+  /v1.0/group/remove_message:
+    put:
+      tags:
+      - group-controller
+      operationId: removeMessage
+      parameters:
+      - name: groupId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: messageId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Group'
+      security:
+      - basicAuth: []
+  /v1.0/group/remove_member:
+    put:
+      tags:
+      - group-controller
+      operationId: removeMember
+      parameters:
+      - name: groupId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Group'
+      security:
+      - basicAuth: []
+  /v1.0/group/edit_name:
+    put:
+      tags:
+      - group-controller
+      operationId: editName
+      parameters:
+      - name: groupId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: newName
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Group'
+      security:
+      - basicAuth: []
+  /v1.0/group/edit_image_type:
+    put:
+      tags:
+      - group-controller
+      operationId: editImageType
+      parameters:
+      - name: groupId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Group'
+      security:
+      - basicAuth: []
+  /v1.0/group/edit_image:
+    put:
+      tags:
+      - group-controller
+      operationId: editImage
+      parameters:
+      - name: groupId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: imageData
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Group'
+      security:
+      - basicAuth: []
+  /v1.0/group/add_message:
+    put:
+      tags:
+      - group-controller
+      operationId: addMessage
+      parameters:
+      - name: groupId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: messageId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Group'
+      security:
+      - basicAuth: []
+  /v1.0/group/add_member:
+    put:
+      tags:
+      - group-controller
+      operationId: addMember
+      parameters:
+      - name: groupId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Group'
+      security:
+      - basicAuth: []
+  /v1.0/channel/remove_message:
+    put:
+      tags:
+      - channel-controller
+      operationId: removeMessage_1
+      parameters:
+      - name: channelId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: messageId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Channel'
+      security:
+      - basicAuth: []
+  /v1.0/channel/remove_member:
+    put:
+      tags:
+      - channel-controller
+      operationId: removeMember_1
+      parameters:
+      - name: channelId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Channel'
+      security:
+      - basicAuth: []
+  /v1.0/channel/edit_nickname:
+    put:
+      tags:
+      - channel-controller
+      operationId: editNickname
+      parameters:
+      - name: channelId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: newName
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Channel'
+      security:
+      - basicAuth: []
+  /v1.0/channel/edit_name:
+    put:
+      tags:
+      - channel-controller
+      operationId: editName_1
+      parameters:
+      - name: channelId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: newName
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Channel'
+      security:
+      - basicAuth: []
+  /v1.0/channel/edit_image_type:
+    put:
+      tags:
+      - channel-controller
+      operationId: editChannelImageType
+      parameters:
+      - name: channelId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Channel'
+      security:
+      - basicAuth: []
+  /v1.0/channel/edit_image:
+    put:
+      tags:
+      - channel-controller
+      operationId: editImage_1
+      parameters:
+      - name: channelId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: imageData
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Channel'
+      security:
+      - basicAuth: []
+  /v1.0/channel/add_message:
+    put:
+      tags:
+      - channel-controller
+      operationId: addMessage_1
+      parameters:
+      - name: channelId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: messageId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Channel'
+      security:
+      - basicAuth: []
+  /v1.0/channel/add_member:
+    put:
+      tags:
+      - channel-controller
+      operationId: addMember_1
+      parameters:
+      - name: channelId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Channel'
+      security:
+      - basicAuth: []
+  /v1.0/user/create:
+    post:
+      tags:
+      - user-controller
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDto'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+  /v1.0/message/create:
+    post:
+      tags:
+      - message-controller
+      operationId: create_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMessageDto'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Message'
+      security:
+      - basicAuth: []
+  /v1.0/group/create:
+    post:
+      tags:
+      - group-controller
+      operationId: create_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupDto'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Group'
+      security:
+      - basicAuth: []
+  /v1.0/channel/create:
+    post:
+      tags:
+      - channel-controller
+      operationId: create_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateChannelDto'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Channel'
+      security:
+      - basicAuth: []
+  /v1.0/user/search_chats:
+    get:
+      tags:
+      - user-controller
+      operationId: searchChats
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+      security:
+      - basicAuth: []
+  /v1.0/user/get_chats:
+    get:
+      tags:
+      - user-controller
+      operationId: getChats
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+      security:
+      - basicAuth: []
+  /v1.0/user/get:
+    get:
+      tags:
+      - user-controller
+      operationId: get
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+      security:
+      - basicAuth: []
+  /v1.0/user/exists:
+    get:
+      tags:
+      - user-controller
+      operationId: exists
+      parameters:
+      - name: userNickname
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /v1.0/user/check_secret_keys:
+    get:
+      tags:
+      - user-controller
+      operationId: checkSecretKeys
+      parameters:
+      - name: userNickname
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: a
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: a_value
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: b
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: b_value
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: c
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: c_value
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /v1.0/user/check_password:
+    get:
+      tags:
+      - user-controller
+      operationId: checkPassword
+      parameters:
+      - name: userNickname
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: verifiablePassword
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+  /v1.0/user/can_write:
+    get:
+      tags:
+      - user-controller
+      operationId: canWrite
+      parameters:
+      - name: chatId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+      security:
+      - basicAuth: []
+  /v1.0/user/can_edit_chat:
+    get:
+      tags:
+      - user-controller
+      operationId: canEditChat
+      parameters:
+      - name: chatId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+      security:
+      - basicAuth: []
+  /v1.0/user/can_delete_message:
+    get:
+      tags:
+      - user-controller
+      operationId: canDeleteMessageChat
+      parameters:
+      - name: messageId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+      security:
+      - basicAuth: []
+  /v1.0/message/get_readers:
+    get:
+      tags:
+      - message-controller
+      operationId: getReaders
+      parameters:
+      - name: messageId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+      security:
+      - basicAuth: []
+  /v1.0/message/get:
+    get:
+      tags:
+      - message-controller
+      operationId: get_1
+      parameters:
+      - name: messageId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Message'
+      security:
+      - basicAuth: []
+  /v1.0/group/search_messages:
+    get:
+      tags:
+      - group-controller
+      operationId: searchMessages
+      parameters:
+      - name: groupId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: text
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+      security:
+      - basicAuth: []
+  /v1.0/group/global_search_chats:
+    get:
+      tags:
+      - group-controller
+      operationId: globalSearchChats
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+      security:
+      - basicAuth: []
+  /v1.0/group/get_chat_fot_user:
+    get:
+      tags:
+      - group-controller
+      operationId: getChatForUser
+      parameters:
+      - name: chatId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Group'
+      security:
+      - basicAuth: []
+  /v1.0/group/get_chat:
+    get:
+      tags:
+      - group-controller
+      operationId: getChat
+      parameters:
+      - name: chatId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Group'
+      security:
+      - basicAuth: []
+  /v1.0/check_password_confirmation:
+    get:
+      tags:
+      - password-controller
+      operationId: checkPasswordConfirmation
+      parameters:
+      - name: password1
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password2
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int32
+  /v1.0/check_password_conditions:
+    get:
+      tags:
+      - password-controller
+      operationId: checkPasswordConditions
+      parameters:
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int32
+  /v1.0/check_password_all_conditions:
+    get:
+      tags:
+      - password-controller
+      operationId: checkPasswordAllConditions
+      parameters:
+      - name: password1
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password2
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int32
+  /v1.0/check_nickname_for_user:
+    get:
+      tags:
+      - nickname-controller
+      operationId: checkNicknameForUser
+      parameters:
+      - name: nickname
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int32
+  /v1.0/check_nickname_for_channel:
+    get:
+      tags:
+      - nickname-controller
+      operationId: checkNicknameForChannel
+      parameters:
+      - name: nickname
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int32
+  /v1.0/check_name:
+    get:
+      tags:
+      - name-controller
+      operationId: checkName
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int32
+  /v1.0/channel/search_messages:
+    get:
+      tags:
+      - channel-controller
+      operationId: searchMessages_1
+      parameters:
+      - name: channelId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: text
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+      security:
+      - basicAuth: []
+  /v1.0/user/delete:
+    delete:
+      tags:
+      - user-controller
+      operationId: delete
+      responses:
+        "200":
+          description: OK
+      security:
+      - basicAuth: []
+  /v1.0/message/delete:
+    delete:
+      tags:
+      - message-controller
+      operationId: delete_1
+      parameters:
+      - name: messageId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+      security:
+      - basicAuth: []
+  /v1.0/group/delete:
+    delete:
+      tags:
+      - group-controller
+      operationId: delete_2
+      parameters:
+      - name: groupId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+      security:
+      - basicAuth: []
+  /v1.0/channel/delete:
+    delete:
+      tags:
+      - channel-controller
+      operationId: delete_3
+      parameters:
+      - name: channelId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+      security:
+      - basicAuth: []
+components:
+  schemas:
+    User:
+      required:
+      - imageData
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        nickname:
+          type: string
+        password:
+          type: string
+        chatsIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        secretKeys:
+          type: array
+          items:
+            type: string
+        imageData:
+          type: string
+          description: Base64-encoded avatar image thumbnail
+          example: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAEElEQVR4nGJ6VrQAEAAA//8EQgH7dTCZ8gAAAABJRU5ErkJggg==
+    Message:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        content:
+          type: string
+        messageChatId:
+          type: integer
+          format: int64
+        ownerNickname:
+          type: string
+        readersNicknames:
+          type: array
+          items:
+            type: string
+    Group:
+      required:
+      - imageData
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        unreadMsgCount:
+          type: integer
+          format: int64
+        type:
+          type: integer
+          format: int32
+        typeOfImage:
+          type: integer
+          format: int32
+        ownerNickname:
+          type: string
+        messagesIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        membersNicknames:
+          type: array
+          items:
+            type: string
+        imageData:
+          type: string
+          description: Base64-encoded avatar image thumbnail
+          example: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAEElEQVR4nGJ6VrQAEAAA//8EQgH7dTCZ8gAAAABJRU5ErkJggg==
+    Channel:
+      required:
+      - imageData
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        unreadMsgCount:
+          type: integer
+          format: int64
+        type:
+          type: integer
+          format: int32
+        typeOfImage:
+          type: integer
+          format: int32
+        ownerNickname:
+          type: string
+        messagesIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        membersNicknames:
+          type: array
+          items:
+            type: string
+        imageData:
+          type: string
+          description: Base64-encoded avatar image thumbnail
+          example: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAEElEQVR4nGJ6VrQAEAAA//8EQgH7dTCZ8gAAAABJRU5ErkJggg==
+        nickname:
+          type: string
+    CreateUserDto:
+      type: object
+      properties:
+        name:
+          type: string
+        nickname:
+          type: string
+        password:
+          type: string
+        secretWords:
+          type: array
+          items:
+            type: string
+        imageData:
+          type: string
+    CreateMessageDto:
+      type: object
+      properties:
+        content:
+          type: string
+        messageChatId:
+          type: integer
+          format: int64
+    CreateGroupDto:
+      type: object
+      properties:
+        name:
+          type: string
+        unreadMsgCount:
+          type: integer
+          format: int64
+        typeOfImage:
+          type: integer
+          format: int32
+        messagesIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        membersNicknames:
+          type: array
+          items:
+            type: string
+        imageData:
+          type: string
+    CreateChannelDto:
+      type: object
+      properties:
+        name:
+          type: string
+        unreadMsgCount:
+          type: integer
+          format: int64
+        typeOfImage:
+          type: integer
+          format: int32
+        messagesIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        membersNicknames:
+          type: array
+          items:
+            type: string
+        imageData:
+          type: string
+        nickname:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
