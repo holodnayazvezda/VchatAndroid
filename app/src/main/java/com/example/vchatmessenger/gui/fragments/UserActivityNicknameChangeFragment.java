@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.vchatmessenger.R;
+import com.example.vchatmessenger.core.api.socket_gateway.SocketService;
 import com.example.vchatmessenger.gui.activities.UserActivity;
 import com.example.vchatmessenger.core.shared_preferences.AuthWorker;
 

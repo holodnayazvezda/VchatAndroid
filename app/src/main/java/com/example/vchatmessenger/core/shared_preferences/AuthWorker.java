@@ -3,6 +3,8 @@ package com.example.vchatmessenger.core.shared_preferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.vchatmessenger.core.api.socket_gateway.SocketService;
+
 import java.util.ArrayList;
 
 public class AuthWorker {
@@ -33,6 +35,7 @@ public class AuthWorker {
         editor.putLong("id", id);
         editor.putBoolean("isloggedin", true);
         editor.apply();
+        SocketService.updateOptions(newNickname, newPassword);
     }
 
 

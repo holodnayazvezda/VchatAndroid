@@ -7,6 +7,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -40,6 +41,7 @@ import java.util.ArrayList;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.engineio.client.transports.WebSocket;
+import okhttp3.Call;
 import okhttp3.Credentials;
 
 public class SocketService extends Service {
@@ -61,7 +63,6 @@ public class SocketService extends Service {
             options.forceNew = true;
             options.reconnection = true;
             options.transports = new String[]{WebSocket.NAME};
-
             ArrayList<String> authData = getAuthData(getApplicationContext());
             options.query = Credentials.basic(authData.get(0), authData.get(1));
             socket = IO.socket("http://80.90.191.25:4000/", options);
@@ -229,5 +230,16 @@ public class SocketService extends Service {
         SocketService getService() {
             return SocketService.this;
         }
+    }
+
+    public static void updateOptions(String userNickname, String userPassword) {
+        try {
+            IO.Options options = new IO.Options();
+            options.forceNew = true;
+            options.reconnection = true;
+            options.transports = new String[]{WebSocket.NAME};
+            options.query = Credentials.basic(userNickname, userPassword);
+            socket = IO.socket("http://80.90.191.25:4000/", options);
+        } catch (URISyntaxException ignored) {}
     }
 }
